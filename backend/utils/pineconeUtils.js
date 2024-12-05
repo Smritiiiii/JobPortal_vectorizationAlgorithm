@@ -23,16 +23,16 @@ export const saveEmbeddingsToPinecone = async (embeddings, namespace = null) => 
         throw new Error(`Invalid embedding format: ${JSON.stringify(embedding)}`);
       }
       return {
-        id: embedding.id,        // Unique identifier
-        values: embedding.values, // Embedding vector (array of numbers)
-        metadata: embedding.metadata || {}, // Optional metadata
+        id: embedding.id,      
+        values: embedding.values, 
+        metadata: embedding.metadata || {}, 
       };
     });
 
-    // Check if namespace is provided
+    
     const indexWithNamespace = namespace ? index.namespace(namespace) : index;
 
-    // Call Pinecone's upsert method
+  
     const upsertResponse = await indexWithNamespace.upsert(formattedEmbeddings);
 
     // console.log("Upsert response:", upsertResponse);

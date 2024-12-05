@@ -26,7 +26,13 @@ const AppliedJobTable = () => {
                                 <TableCell>{appliedJob?.createdAt?.split("T")[0]}</TableCell>
                                 <TableCell>{appliedJob.job?.title}</TableCell>
                                 <TableCell>{appliedJob.job?.company?.name}</TableCell>
-                                <TableCell className="text-right"><Badge className={`${appliedJob?.status === "rejected" ? 'bg-red-400' : appliedJob?.status ==="accepted" ?'bg-green-400' :'bg-gray-400'}`}></Badge></TableCell>
+                                <TableCell className="text-right"><Badge className={`${appliedJob?.status === "rejected" ? 'bg-red-400 text-white' : appliedJob.status === 'pending' ? 'bg-gray-400 text-white' : 'bg-green-400 text-white'}`}>
+                                {appliedJob?.status === "rejected"
+            ? "Rejected"
+            : appliedJob?.status === "pending"
+            ? "Pending"
+            : "Accepted"}
+                                    </Badge></TableCell>
                             </TableRow>
                         ))
                     }
